@@ -1,6 +1,6 @@
 CFLAGS = -Wall -O2 -s -Werror
 LDFLAGS = -lusb -lftdi -s
-PROG = ft232r_prog
+PROG = bitbang_cbus
 
 all:	$(PROG)
 

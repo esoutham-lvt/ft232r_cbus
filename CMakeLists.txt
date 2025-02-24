@@ -1,0 +1,6 @@
+cmake_minimum_required(VERSION 3.12)
+project(ft232r_cbus_wiggle)
+set(COMPILE_DEFINITIONS -02 -Wall)
+#set(CMAKE_EXE_LINKER_FLAGS "-lusb -lftdi -s")
+add_executable(ft232r_cbus_wiggle src/bitbang_cbus.c)
+target_link_libraries(ft232r_cbus_wiggle /lib/aarch64-linux-gnu/libftdi1.so.2)
