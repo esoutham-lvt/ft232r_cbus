@@ -1,10 +1,10 @@
 CFLAGS = -Wall -O2 -s -Werror
 LDFLAGS = -lusb -lftdi -s
-PROG = bitbang_cbus
+PROG = ft232r_cbus
 
 all:	$(PROG)
 
-$(PROG):	$(PROG).c
+$(PROG):	main.c
 	$(CC) $(CFLAGS) -o $@ $< $(LDFLAGS)
 
 clean:

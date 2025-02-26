@@ -36,6 +36,7 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <ftdi.h>
+//macos #include </usr/local/include/ftdi1/ftdi.h>
 
 int main(void)
 {

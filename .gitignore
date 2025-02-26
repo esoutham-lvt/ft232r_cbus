@@ -1,7 +1,9 @@
-
+# project build folder
 build/
-
-.DS_Store
-
+# project executable output
 bitbang_cbus
 
+# hidden macos folder
+.DS_Store
+# jetbrains project files
+.idea
