@@ -35,8 +35,8 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <stdlib.h>
-#include <ftdi.h>
-//macos #include </usr/local/include/ftdi1/ftdi.h>
+#include <libftdi1/ftdi.h>    // ref ftdi version 1.5-x. "sudo apt-get install libftdi1-dev"
+//#include <ftdi1/ftdi.h>     // USE for mac // ref ftdi version 1.5-x. "sudo apt-get install libftdi1-dev"
 
 int main(void)
 {
@@ -51,8 +51,9 @@ int main(void)
         fprintf(stderr, "ftdi_new failed\n");
         return EXIT_FAILURE;
     }
+    ftdi->module_detach_mode = AUTO_DETACH_REATACH_SIO_MODULE;    // Set this to avoid kernel module already attached error and reattach it after use
 
-    f = ftdi_usb_open_desc(ftdi, 0x0403, 0x6001, "FT232R USB UART", NULL);
+    f = ftdi_usb_open_desc(ftdi, 0x0403, 0x6001, "FT232R USB UART", NULL);    // Use Description specific string(default for chip used on board)
     if (f < 0 && f != -5)
     {
         fprintf(stderr, "unable to open ftdi device: %d (%s)\n", f, ftdi_get_error_string(ftdi));
@@ -90,10 +91,9 @@ int main(void)
         printf("Read returned 0x%01x\n", buf[0] & 0x0f);
     }
     printf("disabling bitbang mode\n");
-    ftdi_disable_bitbang(ftdi);
-
-    ftdi_usb_close(ftdi);
-    ftdi_free(ftdi);
+    ftdi_disable_bitbang(ftdi); // reset to regular serial/FIFO
+    ftdi_usb_close(ftdi);       // close the ftdi device, releases to kernel
+    ftdi_free(ftdi);            // deallocate ftdi context
 
     return 0;
 }
