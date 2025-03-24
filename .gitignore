@@ -1,9 +1,12 @@
 # project build folder
-build/
+# output folder
+build**
+
 # project executable output
-bitbang_cbus
+ft232r_cbus
 
 # hidden macos folder
 .DS_Store
 # jetbrains project files
 .idea
+

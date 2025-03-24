@@ -8,7 +8,7 @@
             "name": "(gdb) Launch",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/build/bitbang_cbus",
+            "program": "${workspaceFolder}/build/ft232r_cbus",
             "args": ["01100110"],
             "stopAtEntry": false,
             "cwd": "${fileDirname}",
